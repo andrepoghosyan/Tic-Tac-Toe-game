@@ -1,0 +1,164 @@
+# create a board displayer
+from IPython.display import clear_output
+
+def display_board(board):
+    
+    print("\n")
+    print(board[1] + "|" + board[2] + "|" + board[3])
+    print ("-----")
+    print(board[4] + "|" + board[5] + "|" + board[6])
+    print ("-----")
+    print(board[7] + "|" + board[8] + "|" + board[9])
+    
+    #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
+def x_place_marker():
+  
+  display_board(game_board)
+  print("\nX, go.")
+
+  try:
+        
+    player1_desired_position = int(input("\nWhich location would you like to put your marker, X?\n"))
+    
+    if game_board[player1_desired_position] == " ":
+        
+      game_board[player1_desired_position] = "X"
+      display_board(game_board)
+    
+    else:
+        print("There is already a letter on that space.\n")
+    
+  except:
+      print("Please enter a number from 1-9.\n")
+      x_place_marker()
+   
+   
+def o_place_marker():
+  print("\nO, go.")
+  
+  try:
+    
+    player2_desired_position = int(input("\nWhich location would you like to put your marker, O?\n"))
+    
+    if game_board[player2_desired_position] == " ":
+      
+      game_board[player2_desired_position] = "O"
+      display_board(game_board)
+    
+    else:
+      print("There is already a letter on that space.\n")
+      o_place_marker()
+    
+  except:
+    
+    print("Please enter a number from 1-9.\n")
+    o_place_marker()
+ 
+ def win_check(board,mark):
+  return ((board[7] == board[8] == board[9] == mark) or 
+    (board[4] == board[5] == board[6] == mark) or 
+    (board[1] == board[2] == board[3] == mark) or 
+    (board[7] == board[4] == board[1] == mark) or 
+    (board[8] == board[5] == board[2] == mark) or 
+    (board[9] == board[6] == board[3] == mark) or 
+    (board[7] == board[5] == board[3] == mark) or
+    (board[9] == board[5] == board[1] == mark)) #double parenthesis so we can write in multiple lines, not one continuing line.
+  
+#Write a function that returns a boolean indicating whether a space on the board is freely available.
+def space_check(board, num):
+  return board[num] == ' '
+ 
+ #step 7: Write a function that checks returns a boolean value. True if full, False otherwise.
+
+def full_board_check(board):
+    
+    if all([space_check(board, num) for num in range(1,10)]):
+        return False
+    
+    if (space_check(game_board, 1) or space_check(game_board, 2) or space_check(game_board, 3) 
+        or space_check(game_board, 2) or space_check(game_board, 4) or space_check(game_board, 5) 
+        or space_check(game_board, 6) or space_check(game_board, 7) or space_check(game_board, 8) 
+        or space_check(game_board, 9)):
+        return False
+        
+    return True
+    #if False is not returned, then the board is full so True is returned.
+   
+def play_again():
+    
+    global replay
+    
+    replay = input("Do you want to play again? Press 'N' for No if you don't, or any other button to play again.").upper()
+  
+ 
+while True:
+    
+    clear_output()
+    game_board = [" "] * 10
+    print("Welcome to Tic Tac Toe!")
+
+    while True:
+    
+      whos_first = input("Player 1, do you want to be X or O? X goes first.\n").upper()
+      if whos_first == "X":
+        print("X, O")
+        break
+      elif whos_first == "O":
+        print("O, X")
+        break
+
+#Enjoy
+    while True:
+
+      play_game = input("Are you two ready to play? Press 'Y' for Yes or 'N' for No.\n").upper()
+      if play_game == "Y":
+        game_on = True
+        break
+    
+      elif play_game == "N":
+        play_game 
+
+      else:
+        print("Please type in 'Y' or 'N'.")
+        play_game
+ 
+
+    while game_on:
+        
+        if full_board_check(game_board):
+            print("Looks like this game is a tie!")
+        
+            play_again = input("Do you want to play again? Press 'Y' for Yes or 'N' for No.").upper()
+        
+            if play_again == "Y":
+                break
+        
+            elif play_again == "N":
+                print("Goodbye!")
+                break
+    
+        x_place_marker()
+    
+        if win_check(game_board, "X"):
+            
+            print("Congratulations, X! You have one the game!")
+            break
+    
+        if full_board_check(game_board):
+            
+            print("Looks like the game is a tie!")
+            break
+  
+        o_place_marker()
+    
+        if win_check(game_board, "O"):
+            
+            print("Congratulations O! You have one the game!\n")
+            break
+    
+    play_again()
+    
+    if replay == "N":
+        
+        print("Goodbye!")
+        break
