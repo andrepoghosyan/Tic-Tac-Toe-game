@@ -11,48 +11,59 @@ def display_board(board):
     print(board[7] + "|" + board[8] + "|" + board[9])
     
     #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
-def x_place_marker():
-  
-  display_board(game_board)
-  print("\nX, go.")
+ #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
 
-  try:
+def x_place_marker():
+    
+    display_board(game_board)
+    print("\nX, go.")
+    global player1_desired_position
+
+    while True:
         
-    player1_desired_position = int(input("\nWhich location would you like to put your marker, X?\n"))
-    
-    if game_board[player1_desired_position] == " ":
+        try:
         
-      game_board[player1_desired_position] = "X"
-      display_board(game_board)
+            player1_desired_position = int(input("\nWhich location would you like to put your marker, X?\n"))
     
-    else:
-        print("There is already a letter on that space.\n")
-    
-  except:
-      print("Please enter a number from 1-9.\n")
-      x_place_marker()
-   
-   
-def o_place_marker():
-  print("\nO, go.")
+        except:
+            
+            pass
+        
+        if type(player1_desired_position) == int and player1_desired_position in range(1,10) and game_board[player1_desired_position] == " ":
+            
+            game_board[player1_desired_position] = "X"
+            display_board(game_board)
+            break
+            
+        else:
+                
+            print("Please enter an integer from 1-9. That corresponds to an empty space on the grid.")
+            
+ def o_place_marker():
   
-  try:
+    print("\nO, go.")
+    global player2_desired_position
     
-    player2_desired_position = int(input("\nWhich location would you like to put your marker, O?\n"))
+    while True:
     
-    if game_board[player2_desired_position] == " ":
-      
-      game_board[player2_desired_position] = "O"
-      display_board(game_board)
+        try:
     
-    else:
-      print("There is already a letter on that space.\n")
-      o_place_marker()
+            player2_desired_position = int(input("\nWhich location would you like to put your marker, O?\n"))
     
-  except:
+        except:
     
-    print("Please enter a number from 1-9.\n")
-    o_place_marker()
+            pass
+        
+        if type(player2_desired_position) == int and player2_desired_position in range(1,10) and game_board[player2_desired_position] == " ":
+            
+            game_board[player2_desired_position] = "O"
+            display_board(game_board)
+            break
+        
+        else:
+            
+            print("Please enter an integer from 1-9 that corresponds to any empty space on the grid.")
+                    
  
  def win_check(board,mark):
   return ((board[7] == board[8] == board[9] == mark) or 
