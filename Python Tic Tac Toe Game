@@ -10,7 +10,6 @@ def display_board(board):
     print ("-----")
     print(board[7] + "|" + board[8] + "|" + board[9])
     
-    
  #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
 
  #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
