@@ -13,6 +13,8 @@ def display_board(board):
     #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
  #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
 
+ #step 3: Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
+
 def x_place_marker():
     
     display_board(game_board)
@@ -21,15 +23,18 @@ def x_place_marker():
 
     while True:
         
-        try:
+        while True:
         
-            player1_desired_position = int(input("\nWhich location would you like to put your marker, X?\n"))
+            try:
+        
+                player1_desired_position = int(input("\nWhich location would you like to put your marker, X?\n"))
+                break
     
-        except:
+            except:
             
-            pass
+                print("Please enter an integer from 1-9 that corresponds to an empty space on the grid.")
         
-        if type(player1_desired_position) == int and player1_desired_position in range(1,10) and game_board[player1_desired_position] == " ":
+        if player1_desired_position in range(1,10) and game_board[player1_desired_position] == " ":
             
             game_board[player1_desired_position] = "X"
             display_board(game_board)
@@ -37,24 +42,27 @@ def x_place_marker():
             
         else:
                 
-            print("Please enter an integer from 1-9. That corresponds to an empty space on the grid.")
-            
- def o_place_marker():
+            print("Please enter an integer from 1-9 that corresponds to an empty space on the grid.")
+ 
+def o_place_marker():
   
     print("\nO, go.")
     global player2_desired_position
     
     while True:
-    
-        try:
-    
-            player2_desired_position = int(input("\nWhich location would you like to put your marker, O?\n"))
-    
-        except:
-    
-            pass
         
-        if type(player2_desired_position) == int and player2_desired_position in range(1,10) and game_board[player2_desired_position] == " ":
+        while True:
+    
+            try:
+            
+                player2_desired_position = int(input("\nWhich location would you like to put your marker, O?\n"))
+                break
+    
+            except:
+    
+                print("Please enter an integer from 1-9 that corresponds to an empty space on the grid.")
+        
+        if player2_desired_position in range(1,10) and game_board[player2_desired_position] == " ":
             
             game_board[player2_desired_position] = "O"
             display_board(game_board)
@@ -63,7 +71,6 @@ def x_place_marker():
         else:
             
             print("Please enter an integer from 1-9 that corresponds to any empty space on the grid.")
-                    
  
  def win_check(board,mark):
   return ((board[7] == board[8] == board[9] == mark) or 
@@ -94,14 +101,11 @@ def full_board_check(board):
         
     return True
     #if False is not returned, then the board is full so True is returned.
-   
-def play_again():
-    
-    global replay
-    
-    replay = input("Do you want to play again? Press 'N' for No if you don't, or any other button to play again.").upper()
   
- 
+  
+
+print("Welcome to Tic Tac Toe!")
+
 while True:
     
     clear_output()
@@ -109,50 +113,47 @@ while True:
     print("Welcome to Tic Tac Toe!")
 
     while True:
+        
+        whos_first = input("\nPlayer 1, do you want to be X or O? X goes first.\n").upper()
+      
+        if whos_first == "X":
+            
+            print("X, O")
+            break
+            
+        elif whos_first == "O":
+            print("O, X")
+            break
     
-      whos_first = input("Player 1, do you want to be X or O? X goes first.\n").upper()
-      if whos_first == "X":
-        print("X, O")
-        break
-      elif whos_first == "O":
-        print("O, X")
-        break
-
-#Enjoy
     while True:
 
-      play_game = input("Are you two ready to play? Press 'Y' for Yes or 'N' for No.\n").upper()
-      if play_game == "Y":
-        game_on = True
-        break
+        play_game = input("\nAre you two ready to play? Press 'Y' for Yes or 'N' for No.\n").upper()
+        
+        if play_game == "Y":
+            
+            game_on = True
+            break
     
-      elif play_game == "N":
-        play_game 
+        elif play_game == "N":
+            
+            play_game 
 
-      else:
-        print("Please type in 'Y' or 'N'.")
-        play_game
+        else:
+            
+            print("Please type in 'Y' or 'N'.")
+            play_game
  
-
     while game_on:
         
         if full_board_check(game_board):
-            print("Looks like this game is a tie!")
-        
-            play_again = input("Do you want to play again? Press 'Y' for Yes or 'N' for No.").upper()
-        
-            if play_again == "Y":
-                break
-        
-            elif play_again == "N":
-                print("Goodbye!")
-                break
+            print("\nLooks like this game is a tie!")
+            break
     
         x_place_marker()
     
         if win_check(game_board, "X"):
             
-            print("Congratulations, X! You have one the game!")
+            print("\nCongratulations, X! You have one the game!")
             break
     
         if full_board_check(game_board):
@@ -164,12 +165,23 @@ while True:
     
         if win_check(game_board, "O"):
             
-            print("Congratulations O! You have one the game!\n")
+            print("\nCongratulations O! You have one the game!\n")
             break
     
-    play_again()
+    
+    while True:
+        
+        replay = input("Do you players want to play again? Press 'N' for No if you don't, or any other button to play again.").upper()
+    
+        if replay == "N":
+        
+            print("\nGoodbye!")
+            break
+        
+        else:
+            
+            break
     
     if replay == "N":
         
-        print("Goodbye!")
         break
