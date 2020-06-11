@@ -121,6 +121,7 @@ while True:
             break
             
         elif whos_first == "O":
+            
             print("O, X")
             break
     
