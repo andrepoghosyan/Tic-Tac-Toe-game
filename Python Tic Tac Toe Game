@@ -67,7 +67,7 @@ def space_check(board, num):
 
 def full_board_check(board):
 
-    for num in range(10):
+    for num in range(1,10):
         
         if space_check(game_board,num):
             
