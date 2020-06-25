@@ -60,25 +60,20 @@ def place_marker(board, marker):
     (board[7] == board[5] == board[3] == mark) or
     (board[9] == board[5] == board[1] == mark)) #double parenthesis so we can write in multiple lines, not one continuing line.
   
-#Write a function that returns a boolean indicating whether a space on the board is freely available.
 def space_check(board, num):
+  
   return board[num] == ' '
  
- #step 7: Write a function that checks returns a boolean value. True if full, False otherwise.
 
 def full_board_check(board):
-    
-    if all([space_check(board, num) for num in range(1,10)]):
-        return False
-    
-    if (space_check(game_board, 1) or space_check(game_board, 2) or space_check(game_board, 3) 
-        or space_check(game_board, 2) or space_check(game_board, 4) or space_check(game_board, 5) 
-        or space_check(game_board, 6) or space_check(game_board, 7) or space_check(game_board, 8) 
-        or space_check(game_board, 9)):
-        return False
+
+    for num in range(10):
         
-    return True
-    #if False is not returned, then the board is full so True is returned.
+        if space_check(game_board,num):
+            
+            return False
+        
+    return True #function stops when something is returned, so if it hasn’t stopped by this point, the board is full so True must be returned.
   
   
 
