@@ -91,12 +91,12 @@ while True:
       
         if whos_first == "X":
             
-            print("X, O")
+            print("Got it.")
             break
             
         elif whos_first == "O":
             
-            print("O, X")
+            print("Got it.")
             break
     
     while True:
@@ -110,12 +110,11 @@ while True:
     
         elif play_game == "N":
             
-            play_game 
+            pass
 
         else:
             
             print("Please type in 'Y' or 'N'.")
-            play_game
  
     while game_on:
         
