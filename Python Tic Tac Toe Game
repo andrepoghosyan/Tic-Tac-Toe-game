@@ -50,8 +50,9 @@ def place_marker(board, marker):
             print("Please enter an integer 1-9.")
 
  
- def win_check(board,mark):
-  return ((board[7] == board[8] == board[9] == mark) or 
+def win_check(board,mark):
+    
+    return ((board[7] == board[8] == board[9] == mark) or 
     (board[4] == board[5] == board[6] == mark) or 
     (board[1] == board[2] == board[3] == mark) or 
     (board[7] == board[4] == board[1] == mark) or 
@@ -74,8 +75,6 @@ def full_board_check(board):
             return False
         
     return True #function stops when something is returned, so if it hasn’t stopped by this point, the board is full so True must be returned.
-  
-  
 
 print("Welcome to Tic Tac Toe!")
 
@@ -122,8 +121,8 @@ while True:
             print("\nLooks like this game is a tie!")
             break
     
-        x_place_marker()
-    
+        place_marker(game_board, "X")
+
         if win_check(game_board, "X"):
             
             print("\nCongratulations, X! You have one the game!")
@@ -134,7 +133,7 @@ while True:
             print("Looks like the game is a tie!")
             break
   
-        o_place_marker()
+        place_marker(game_board, "O")
     
         if win_check(game_board, "O"):
             
@@ -148,7 +147,7 @@ while True:
     
         if replay == "N":
         
-            print("\nGoodbye!")
+            print("\nGoodbye! Play again sometime.")
             break
         
         else:
